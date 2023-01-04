@@ -19,7 +19,7 @@ export default class Weatherscreen extends Component {
     }
 
     getCurrentWeather = () => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.props.lat}&lon=${this.props.lon}&appid=${env.WEATHER_API_KEY}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.props.lat}&lon=${this.props.lon}&units=${this.props.measurement}&appid=${env.WEATHER_API_KEY}`)
             .then((resp) => resp.json())
             .then((data) => this.setState({ weatherdata: data }));
     }
@@ -28,7 +28,7 @@ export default class Weatherscreen extends Component {
         try {
             return (
                 <div>
-                    <p>Jelenlegi hőmérséklet: {this.state.weatherdata.main.temp} K </p>
+                    <p>Jelenlegi hőmérséklet: {this.state.weatherdata.main.temp} {this.props.measurement === 'metric' ? '°C' : '°F'} </p>
                     <p>Jelenlegi páratartalom: {this.state.weatherdata.main.humidity} %</p>
                 </div>
             );

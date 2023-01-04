@@ -10,9 +10,14 @@ export default class App extends Component {
     city: "Budapest",
     longitude: 0,
     latitude: 0,
+    measurement: 'metric'
   };
 
   componentDidMount() {
+    this.getCityData();
+  }
+
+  componentDidUpdate () {
     this.getCityData();
   }
 
@@ -24,15 +29,20 @@ export default class App extends Component {
     })
   }
 
-  #update = () => {
+  #update = async (newcityname) => {
+    await this.setState({city: newcityname});
+  }
 
+  #updatemeasurement = async (newmeasurement) => {
+    await this.setState({measurement : newmeasurement});
+    console.log(this.state.measurement);
   }
 
   render() {
     return (
       <div className="App">
-        <Searchbar cityname={this.state.city}/>
-        <Weatherscreen lon={this.state.longitude} lat={this.state.latitude} />
+        <Searchbar cityname={this.state.city} citychanged={this.#update} measurement={this.state.measurement} measurementchanged={this.#updatemeasurement}/>
+        <Weatherscreen lon={this.state.longitude} lat={this.state.latitude} measurement={this.state.measurement}/>
       </div>
     );
   }
