@@ -11,6 +11,7 @@
 #citysearchbox {
     width: 35%;
     height: 35px;
+    padding-left: 1rem;
     font-size: large;
     border: none;
     border-radius: 5px;
@@ -19,4 +20,7 @@
 #searchcitybutton {
     width: 60px;
     height: 35px;
+    border-radius: 5px;
+    background-color: white;
+    border: 0px;
 }

@@ -1,9 +1,11 @@
 import React from "react";
 import { Component } from "react";
-import "./App.css";
 import env from "react-dotenv";
+
 import Weatherscreen from "./Components/WeatherScreen/weatherscreen";
 import Searchbar from "./Components/Searchbar/searchbar";
+
+import "./App.css";
 
 export default class App extends Component {
   state = {
@@ -13,8 +15,8 @@ export default class App extends Component {
     measurement: 'metric'
   };
 
-  componentDidMount() {
-    this.getCityData();
+  async componentDidMount() {
+    await this.getCityData();
   }
 
   componentDidUpdate () {
@@ -35,7 +37,6 @@ export default class App extends Component {
 
   #updatemeasurement = async (newmeasurement) => {
     await this.setState({measurement : newmeasurement});
-    console.log(this.state.measurement);
   }
 
   render() {

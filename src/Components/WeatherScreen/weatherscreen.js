@@ -2,6 +2,8 @@ import React from "react";
 import { Component } from "react";
 import env from "react-dotenv";
 
+import Currentweather from "../CurrentWeather/currentweather";
+
 export default class Weatherscreen extends Component {
     constructor(props) {
         super(props);
@@ -13,8 +15,8 @@ export default class Weatherscreen extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.lat !== prevProps.lat || this.props.lon !== prevProps.lon) {
-            this.getCurrentWeather();
+        if(prevProps !== this.props) {
+            this.getCurrentWeather()
         }
     }
 
@@ -24,22 +26,10 @@ export default class Weatherscreen extends Component {
             .then((data) => this.setState({ weatherdata: data }));
     }
 
-    renderCurrentWeather = () => {
-        try {
-            return (
-                <div>
-                    <p>Jelenlegi hőmérséklet: {this.state.weatherdata.main.temp} {this.props.measurement === 'metric' ? '°C' : '°F'} </p>
-                    <p>Jelenlegi páratartalom: {this.state.weatherdata.main.humidity} %</p>
-                </div>
-            );
-        } catch (error) {
-            return <p></p>;
-        }
-    }
     render() {
         return (
-            <div className="current-weather-container">
-                {this.renderCurrentWeather()}
+            <div className="weather-container">
+                <Currentweather weatherdata={this.state.weatherdata} measurement={this.props.measurement}/>
             </div>
         );
     }
