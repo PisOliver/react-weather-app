@@ -1,5 +1,16 @@
 .currentweather-container {
-    width: 200px;
-    height: 200px;
-    
+    width: fit-content;
+    height: fit-content;
+    border: 1px black solid;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.currentweather-container > h2 {
+    text-align: left;
+}
+
+.weatherdetails-table {
+    border-left: 2px orange solid;
+    padding-left: 5px;
 }

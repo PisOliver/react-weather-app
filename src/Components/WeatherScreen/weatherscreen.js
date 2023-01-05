@@ -3,6 +3,7 @@ import { Component } from "react";
 import env from "react-dotenv";
 
 import Currentweather from "../CurrentWeather/currentweather";
+import './weatherscreen.css';
 
 export default class Weatherscreen extends Component {
     constructor(props) {
