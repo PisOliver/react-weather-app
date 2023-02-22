@@ -1,59 +1,56 @@
-import React, { Component } from "react";
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react";
 
 import './currentweather.css';
 
-export default class Currentweather extends Component {
-    static props = {
-        weatherdata: PropTypes.object,
-        measurement: PropTypes.string
-    }
+export default function CurrentWeather({weatherdata, measurement}) {
+    const [tempmeasure, setTempMeasure] = useState();
+    const [windmeasure, setWindMeasure] = useState();
 
-    tempmeasure = this.props.measurement === 'metric' ? '°C' : '°F';
-    windmeasure = this.props.measurement === 'metric' ? 'm/s' : 'mi/h';
-
-    renderDetailsTable() {
+    useEffect(() => {
+        setTempMeasure(measurement === 'metric' ? '°C' : '°F');
+        setWindMeasure(measurement === 'metric' ? 'm/s' : 'mi/h');
+    }, [measurement]);
+    
+    const renderDetailsTable = () => {
         try {
             return (
                 <table className="weatherdetails-table">
                     <tr>
-                        <td>{this.props.weatherdata.wind.speed} {this.windmeasure}</td>
-                        <td>{this.props.weatherdata.main.pressure}hPa</td>
+                        <td>{weatherdata.wind.speed} {windmeasure}</td>
+                        <td>{weatherdata.main.pressure}hPa</td>
                     </tr>
                     <tr>
-                        <td>Humidity: {this.props.weatherdata.main.humidity}%</td>
-                        <td>Max temp: {this.props.weatherdata.main.temp_max}{this.tempmeasure}</td>
+                        <td>Humidity: {weatherdata.main.humidity}%</td>
+                        <td>Max temp: {weatherdata.main.temp_max}{tempmeasure}</td>
                     </tr>
 
                     <tr>
-                        <td>Visibility : {(this.props.weatherdata.visibility / 1000).toFixed(2)}km</td>
-                        <td>Min temp: {this.props.weatherdata.main.temp_min}{this.tempmeasure}</td>
+                        <td>Visibility : {(weatherdata.visibility / 1000).toFixed(2)}km</td>
+                        <td>Min temp: {weatherdata.main.temp_min}{tempmeasure}</td>
                     </tr>
                 </table>
             )
         } catch {
             return (
-                <p></p>
+                <></>
             )
         }
     }
 
-    render() {
-        try {
-            return (
-                <div className="currentweather-container">
-                    <h3>{this.props.weatherdata.name}, {this.props.weatherdata.sys.country}</h3>
-                    <h4>{this.props.weatherdata.main.temp} {this.tempmeasure} </h4>
-                    <p>Feels like {this.props.weatherdata.main.feels_like} {this.tempmeasure}</p>
-                    
-                    {this.renderDetailsTable()}
-                </div>
-            )
+    try {
+        return (
+            <div className="currentweather-container">
+                <h3>{weatherdata.name}, {weatherdata.sys.country}</h3>
+                <h4>{weatherdata.main.temp} {tempmeasure} </h4>
+                <p>Feels like {weatherdata.main.feels_like} {tempmeasure}</p>
+                
+                {renderDetailsTable()}
+            </div>
+        )
 
-        } catch {
-            return (
-                <p></p>
-            )
-        }
+    } catch {
+        return (
+            <></>
+        )
     }
 }
