@@ -4,6 +4,8 @@
     border: 1px black solid;
     border-radius: 5px;
     padding: 10px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .currentweather-container > h2 {

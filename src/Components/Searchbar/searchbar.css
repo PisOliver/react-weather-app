@@ -1,11 +1,13 @@
 .searchbar {
     width: 100%;
     height: 85px;
-    background-color: lightgrey;
+    /* background-color: lightgrey; */
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 30px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 }
 
 #citysearchbox {
@@ -15,6 +17,7 @@
     font-size: large;
     border: none;
     border-radius: 5px;
+    background: none;
 }
 
 #searchcitybutton {
