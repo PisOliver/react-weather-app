@@ -7,19 +7,17 @@ import "./App.css";
 import { getCityData } from "./utils/getdata";
 
 export default function App() {
-  const [city, setCity] = useState();
+  const [city, setCity] = useState('Budapest');
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
   const [measurement, setMeasurement] = useState('metric');
 
   useEffect(() => {
     getCityData(city).then((data) => {
-      console.log(data.longitude);
-      console.log(data.latitude);
       setLatitude(data.latitude);
       setLongitude(data.longitude);
     });
-  }, [city]);
+  }, [city, longitude, latitude]);
 
   const updateMeasurement = (newMeasurement) => {
     setMeasurement(newMeasurement);

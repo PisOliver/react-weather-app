@@ -8,8 +8,9 @@ export default function WeatherScreen({lon, lat, measurement}) {
     const [weatherdata, setWeatherdata] = useState();
 
     useEffect(() => {
-        const response = getCurrentWeather(lat, lon, measurement);
-        setWeatherdata(response);
+        getCurrentWeather(lat, lon, measurement).then((response) => {
+            setWeatherdata(response);
+        });
     }, [lat, lon, measurement]);
 
     return (
