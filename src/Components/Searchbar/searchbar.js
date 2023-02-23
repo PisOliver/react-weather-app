@@ -1,40 +1,25 @@
-import React from "react";
-import { Component } from "react";
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
 
 import './searchbar.css';
 
-export default class Searchbar extends Component {
-    static props = {
-        cityname : PropTypes.string,
-        citychanged : PropTypes.func,
-        measurement : PropTypes.string,
-        measurementchanged : PropTypes.func
+export default function Searchbar({cityname, citychanged, measurement, measurementchanged}) {
+    const [enteredCityname, setEnteredCityname] = useState();
+
+    const changeCity = (event) => {
+        setEnteredCityname(event.target.value);
     }
 
-    state = {
-        city : this.props.cityname,
-        enteredcityname : "",
-        measurement : this.props.measurement
-    }
-
-    changeCity(event) {
-        this.setState({enteredcityname : event.target.value});
-    }
-
-    render(){
-        return(
+    return(
             <div className="searchbar">
-                <input type='text' id="citysearchbox" placeholder="City" onChange={this.changeCity.bind(this)} />
+                <input type='text' id="citysearchbox" placeholder="City" onChange={changeCity.bind(this)} />
 
-                <button id="searchcitybutton" onClick={() => this.props.citychanged(this.state.enteredcityname)}>Search</button>
+                <button id="searchcitybutton" onClick={() => citychanged(enteredCityname)}>Search</button>
 
                 <label htmlFor='metricradio'>Metric</label>
-                <input type='radio' id='metricradio' checked={this.props.measurement === 'metric'} onChange={() => this.props.measurementchanged('metric')} />
+                <input type='radio' id='metricradio' checked={measurement === 'metric'} onChange={() => measurementchanged('metric')} />
                 
-                <input type='radio' id='imperial' checked={this.props.measurement === 'imperial'} onChange={() => this.props.measurementchanged('imperial')}/>
+                <input type='radio' id='imperial' checked={measurement === 'imperial'} onChange={() => measurementchanged('imperial')}/>
                 <label htmlFor='imperial'>Imperial</label>
             </div>
         )
-    }
 }
