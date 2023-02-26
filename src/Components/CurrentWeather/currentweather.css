@@ -11,8 +11,3 @@
 .currentweather-container > h2 {
     text-align: left;
 }
-
-.weatherdetails-table {
-    border-left: 2px orange solid;
-    padding-left: 5px;
-}

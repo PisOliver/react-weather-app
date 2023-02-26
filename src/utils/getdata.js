@@ -23,4 +23,14 @@ async function getCurrentWeather(latitude, longitude, measurement) {
     }
 }
 
-export { getCityData, getCurrentWeather }
+async function getDailyWeatherData(latitude, longitude, unit) {
+    try {
+        const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
+
+        return response.data;
+    } catch (error) {
+        
+    }
+}
+
+export { getCityData, getCurrentWeather, getDailyWeatherData }
