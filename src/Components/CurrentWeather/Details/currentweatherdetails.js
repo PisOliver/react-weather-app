@@ -8,7 +8,7 @@ export default function CurrentWeatherDetails({weatherdata, windmeasure, tempmea
             <table className="weatherdetails-table">
                 <tbody>
                     <tr>
-                        <td>{weatherdata.wind.speed} {windmeasure}</td>
+                        <td>Wind speed: {weatherdata.wind.speed} {windmeasure}</td>
                         <td>{weatherdata.main.pressure} hPa</td>
                     </tr>
                     <tr>

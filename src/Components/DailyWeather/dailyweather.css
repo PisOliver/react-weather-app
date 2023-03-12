@@ -16,6 +16,29 @@
 .dailyweather-item {
     flex: 0 0 auto;
     width: 150px;
+    text-align: center;
+}
+
+.dailyweather-item div {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.weather-description-text {
+    font-size: small;
+}
+
+.weather-hour-text {
+    font-size: medium;
+}
+
+.weather-date-text {
+    font-size: small;
+}
+
+.weather-temp-text {
+    font-size: large;
+    font-weight: 600;
 }
 
 ::-webkit-scrollbar {
