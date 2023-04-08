@@ -18,3 +18,5 @@ A basic weather app created using React.js and OpenWeatherMap API.
 
 - [Axios](https://github.com/axios/axios) for HTTP requests
 - [OpenWeatherMap API](https://openweathermap.org/api) for Weather data
+
+## [Live Demo](https://dainty-pasca-aa6aa0.netlify.app)
