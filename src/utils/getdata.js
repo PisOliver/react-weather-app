@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function getCityData(cityname) {
     try {
-        const response = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${cityname}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
+        const response = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${cityname}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
     
         return ({
             latitude: response.data[0].lat,
