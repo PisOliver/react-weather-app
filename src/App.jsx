@@ -7,10 +7,10 @@ import "./App.css";
 import { getCityData } from "./utils/getdata";
 
 export default function App() {
-  const [city, setCity] = useState('Budapest');
+  const [city, setCity] = useState("Budapest");
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
-  const [measurement, setMeasurement] = useState('metric');
+  const [measurement, setMeasurement] = useState("metric");
 
   useEffect(() => {
     getCityData(city).then((data) => {
@@ -21,17 +21,21 @@ export default function App() {
 
   const updateMeasurement = (newMeasurement) => {
     setMeasurement(newMeasurement);
-  }
+  };
 
   const updateCity = (newCityname) => {
     setCity(newCityname);
-  }
-
+  };
 
   return (
     <div className="App">
-      <Searchbar cityname={city} citychanged={updateCity} measurement={measurement} measurementchanged={updateMeasurement}/>
-      <Weatherscreen lon={longitude} lat={latitude} measurement={measurement}/>
+      <Searchbar
+        cityname={city}
+        citychanged={updateCity}
+        measurement={measurement}
+        measurementchanged={updateMeasurement}
+      />
+      <Weatherscreen lon={longitude} lat={latitude} measurement={measurement} />
     </div>
   );
 }
